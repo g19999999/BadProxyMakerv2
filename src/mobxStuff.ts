@@ -43,6 +43,7 @@ export class WholeCard extends Model({
     red: prop<Mana>(()=>new Mana({fill:"R"})),
     green: prop<Mana>(()=>new Mana({fill:"G"})),
     colorless: prop<Mana>(()=>new Mana({fill:"C"})),
+    snow: prop<Mana>(()=>new Mana({fill:"S"})),
     cardTypes: prop<string[]>(()=>[]).withSetter(),
     showSubtypes: prop<boolean>(false).withSetter(),
     subtypes: prop<string>("---").withSetter(),
@@ -53,7 +54,7 @@ export class WholeCard extends Model({
 }) {
     @computed
     get manas() {
-        return [this.generic, this.white, this.blue, this.black, this.red, this.green, this.colorless]
+        return [this.generic, this.white, this.blue, this.black, this.red, this.green, this.colorless, this.snow]
     }
     @computed
     get includedManas() {
@@ -86,6 +87,10 @@ export class WholeCard extends Model({
     @computed
     get canBeVehicle() {
         return this.cardTypes.includes("Artifact")
+    }
+    @computed
+    get isSnow() {
+        return this.cardTypes.includes("Snow")
     }
 }
 
