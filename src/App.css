@@ -1,0 +1,93 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+form{
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+.Card{
+  margin-bottom: 20px;
+}
+.ToggleButton {
+  flex-grow: 1;
+  flex-basis: 160px;
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  /*justify-content: space-evenly;*/
+}
+
+.Checkbox {
+  flex-grow: 0;
+  flex-shrink:0;
+  width: 10rem;
+}
+
+.numberField {
+  flex-grow: 1;
+  flex-shrink: 2;
+  width:10rem;
+  /* align-self: flex-end; */
+}
+
+.ManaCost {
+  flex-grow: 1;
+  margin-right: auto;
+  
+  /* align-self: center; */
+}
+
+.manaSymbols{
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 33px;
+  margin-right: 10px;
+}
+
+.whitesymbol{
+  margin-top:29px;
+}
+
+.proxy {
+  border: 2px solid black;
+  padding: 8px;
+  width: 252px;
+  height: 352px;
+  display:flex;
+  flex-direction:column;
+  margin-right: auto;
+}
+
+.title {
+  display:flex;
+  align-items: flex-start;
+}
+
+.cardName {
+  margin-right: auto;
+}
+
+.TextAreas {
+  margin-right: 20px;
+}
+
+.FlavourText {
+  font-style:italic;
+}
+
+.CardTypes {
+  margin-bottom: 10px;
+}
