@@ -15,7 +15,7 @@ export function Cardify(props:cardInfo) {
           <aside className="textyBits">
             {showSubtypes && <>
             <p>{cardTypes.join(" ")}{subtypes}</p>
-            </>} {!showSubtypes && <p>{cardTypes}</p>}
+            </>} {!showSubtypes && <p>{cardTypes.join(" ")}</p>}
             <p>{oracle}</p>
             <p className="FlavourText">{flavour}</p>
             <p>{power}</p>

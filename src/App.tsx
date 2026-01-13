@@ -15,6 +15,7 @@ import BlackSymbol from "./assets/B.svg"
 import RedSymbol from "./assets/R.svg"
 import GreenSymbol from "./assets/G.svg"
 import ColorlessSymbol from "./assets/C.svg"
+import SnowSymbol from "./assets/S.svg"
 
 
 function setToSingleString(keys: Set<Key>): string {
@@ -25,15 +26,16 @@ function setToSingleString(keys: Set<Key>): string {
 function App() {
   const card = mainCard
   const[mode,setMode] = useState("light")
-  const {generic, white, blue, black, red, green, colorless} = card
+  const {generic, white, blue, black, red, green, colorless, snow} = card
   const checkboxiness = [
-    {name:"Generic", mana:generic},
-    {name:"White", mana:white},
-    {name:"Blue", mana:blue},
-    {name:"Black", mana:black},
-    {name:"Red", mana:red},
-    {name:"Green", mana:green},
-    {name:"Colorless", mana:colorless}
+    {name:"Generic", mana:generic, image:GenericSymbol},
+    {name:"White", mana:white, image:WhiteSymbol},
+    {name:"Blue", mana:blue, image:blUeSymbol},
+    {name:"Black", mana:black, image:BlackSymbol},
+    {name:"Red", mana:red, image:RedSymbol},
+    {name:"Green", mana:green, image:GreenSymbol},
+    {name:"Colorless", mana:colorless, image:ColorlessSymbol},
+    {name:"Snow", mana:snow, image:SnowSymbol}
   ]
   function saveCard() {
     localStorage.setItem("cards", JSON.stringify(getSnapshot(card)))
@@ -105,25 +107,19 @@ function App() {
           <Button onPress={()=>loadCard()}>Load Previous</Button>
         </div>
         <Checkboxify 
-          items={checkboxiness.map(v=>({name:v.name, reasonDisable:v.mana.reasonDisable}))} 
-          onChange={(index)=>checkboxiness[index].mana.toggleShown()}
-          isSet={checkboxiness.map(v=>v.mana.shown)}
+          items={checkboxiness.filter((v)=>(card.isSnow || v.name!="Snow")).map(v=>({name:v.name, reasonDisable:v.mana.reasonDisable}))} 
+          onChange={(index)=>checkboxiness.filter((v)=>(card.isSnow || v.name!="Snow"))[index].mana.toggleShown()}
+          isSet={checkboxiness.filter((v)=>(card.isSnow || v.name!="Snow")).map(v=>v.mana.shown)}
           className='Checkbox'
           label="Card Color"
         />
         <div className="manaSymbols">
-          <img width={25} src={GenericSymbol} className="whitesymbol"></img>
-          <img src={WhiteSymbol} width={25} />
-          <img src={blUeSymbol} width={25} />
-          <img src={BlackSymbol} width={25} />
-          <img src={RedSymbol} width={25} />
-          <img src={GreenSymbol} width={25} />
-          <img src={ColorlessSymbol} width={25} />
+          {checkboxiness.filter((v)=>(card.isSnow || v.name!="Snow")).map(v=><img src={v.image} width={25}/>)}
         </div>
         <aside className="numberfields">
           <ManaNumbers
             items={
-              checkboxiness.map(v=>({color:v.name, onChange:n=>v.mana.setCount(n), value:v.mana.count}))
+              checkboxiness.filter((v)=>(card.isSnow || v.name!="Snow")).map(v=>({color:v.name, onChange:n=>v.mana.setCount(n), value:v.mana.count}))
             }
           />
         </aside>
