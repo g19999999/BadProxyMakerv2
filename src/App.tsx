@@ -91,10 +91,10 @@ function App() {
           />
           <Checkbox isSelected={card.showSubtypes} onChange={()=>card.setShowSubtypes(!card.showSubtypes)}>Does your card have subtypes?</Checkbox>
           {card.showSubtypes && <>
-            <TextField value={card.subtypes} defaultValue="---" onChange={card.setSubtypes} label="Subtypes"></TextField>
+            <TextField value={card.subtypes} defaultValue="---" onChange={v=>card.setSubtypes(v)} label="Subtypes"></TextField>
           </>}
-          <TextField value={card.oracle} label="Oracle Text" onChange={card.setOracle}></TextField>
-          <TextField value={card.flavour} label="Flavour Text" onChange={card.setFlavour}></TextField>
+          <TextField value={card.oracle} label="Oracle Text" onChange={v=>card.setOracle(v)}></TextField>
+          <TextField value={card.flavour} label="Flavour Text" onChange={v=>card.setFlavour(v)}></TextField>
           {card.canBeVehicle && <>
           <Checkbox isSelected={card.vehicle} onChange={v=>card.setVehicle(v)} />
           </>}
